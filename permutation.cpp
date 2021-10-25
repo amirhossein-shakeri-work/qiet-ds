@@ -8,9 +8,7 @@ void print(string);
 
 int main()
 {
-
     permutation("ABC", 0, 3);
-
     return 0;
 }
 
@@ -31,8 +29,4 @@ void permutation(string a, int start, int len)
 
 void print(string a) {
     cout << a << endl;
-    // cout << "[";
-    // for (int i = 0; a[i]; i++)
-    //     cout << a[i] << ", ";
-    // cout << "]\n";
 }

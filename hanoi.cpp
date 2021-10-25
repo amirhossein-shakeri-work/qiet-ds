@@ -23,7 +23,6 @@ void hanoi (int n, int from, int to, int helper) {
     }
 
     hanoi(n - 1, from, helper, to);
-    // hanoi(1, from, to, helper);
     printDisk(n, from, helper);
     hanoi(n - 1, helper, to, from);
 }
