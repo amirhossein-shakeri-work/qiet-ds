@@ -16,6 +16,9 @@ int main()
 
 void permutation(string a, int start, int len)
 {
+    if (a == "" || start < 0 || len < 1 || start > len)
+        return throw invalid_argument("Invalid Args");
+
     if (start == len - 1) 
         return print(a);
 
