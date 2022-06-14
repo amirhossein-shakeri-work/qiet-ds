@@ -1,13 +1,9 @@
 class Node:
-  def __init__(self, data=None, next=None, prev=None):
+  def __init__(self, data=None, next=None):
     self.next: Node = next
-    self.prev: Node = prev
     self.data = data
 
-  def __str__(self):
-    return f'<Node:{self.data}>'
-
-class DoublyLinkedList:
+class LinkedList:
   def __init__(self, head: Node = None):
     self.head = head
     self.last: Node = None
@@ -22,7 +18,7 @@ class DoublyLinkedList:
     self.pushNode(Node(newData))
 
   def pushNode(self, newNode: Node):
-    newNode.prev = self.last
+    # newNode.prev = self.last
     if self.head is None:
       self.head = newNode
     if self.last is not None:
@@ -38,8 +34,8 @@ class DoublyLinkedList:
     node = self.head
     if node.data > newNode.data:
         newNode.next = node
-        newNode.prev = node.prev
-        node.prev = newNode
+        # newNode.prev = node.prev
+        # node.prev = newNode
         self.head = newNode
         return
     while node:
@@ -57,12 +53,11 @@ class DoublyLinkedList:
       node = node.next
 
   def removeNode(self, node: Node):
-    print(f'removing {node} next:{node.next}, prev:{node.prev}')
-    if node.prev:
-      node.prev.next = node.next
+    # if node.prev:
+    #   node.prev.next = node.next
     if node.next:
       node.next.prev = node.prev
-    # node, node.prev, node.next = None
+    node, node.next = None  # node.prev,
 
   def insertDataAfter(self, prevNode: Node, newData):
     self.insertNodeAfter(Node(newData, prevNode.next, prevNode))
@@ -80,12 +75,6 @@ class DoublyLinkedList:
       node = node.next
     # string += ']'
     return string
-  
-  def deepPrint(self):
-    node = self.head
-    while node:
-      print(f'{node.prev} <- {node} -> {node.next}')
-      node = node.next
 
 
 def main():
@@ -101,10 +90,6 @@ def main():
   l.insertData(12)
   print(l)
   l.insertData(0)
-  print(l)
-  l.removeData(4)
-  print(l)
-  l.deepPrint()
 
 
 if __name__ == '__main__':
