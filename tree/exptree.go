@@ -43,6 +43,12 @@ func (tree *ExpTree) ParseInfix(s string) *ExpTree { // "((2+3)*(4-1))"
 	return tree
 }
 
+func (tree *ExpTree) ParsePrefix(s string) *ExpTree { // "*+23-41"
+	i := 0
+	tree.Root = PrefixToExpTree(s, &i)
+	return tree
+}
+
 func (tree *ExpTree) ToPrefix() string {
 	return *tree.Root.ToPrefix()
 }

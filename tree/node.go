@@ -30,3 +30,17 @@ func (n *Node) ToPrefix() *string {
 	}
 	return &s
 }
+
+func PrefixToExpTree(s string, i *int) *Node {
+	if *i >= len(s) {
+		return nil
+	}
+	n := &Node{Data: string(s[*i])}
+	if isOperator(string(s[*i])) {
+		*i++
+		n.LChild = PrefixToExpTree(s, i)
+		*i++
+		n.RChild = PrefixToExpTree(s, i)
+	}
+	return n
+}
