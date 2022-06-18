@@ -1,19 +1,12 @@
-package exptree
+package tree
 
 import "fmt"
-
-type Node struct {
-	Data   string
-	LChild *Node
-	RChild *Node
-	Parent *Node
-}
 
 type ExpTree struct {
 	Root *Node
 }
 
-func New(root *Node) *ExpTree {
+func NewExpTree(root *Node) *ExpTree {
 	return &ExpTree{Root: root}
 }
 
@@ -50,8 +43,8 @@ func (tree *ExpTree) ParseInfix(s string) *ExpTree { // "((2+3)*(4-1))"
 	return tree
 }
 
-func (n *Node) Print() {
-	fmt.Printf("%#v", n)
+func (tree *ExpTree) ToPrefix() string {
+	return *tree.Root.ToPrefix()
 }
 
 func (t *ExpTree) Print() {
