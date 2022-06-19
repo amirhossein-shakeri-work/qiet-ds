@@ -1,7 +1,7 @@
 package main
 
 import (
-	"amirhossein-shakeri/qiet-ds/tree"
+	"amirhossein-shakeri/qiet-ds/queue"
 	"fmt"
 )
 
@@ -16,8 +16,22 @@ func main() {
 	// fmt.Println(t0.ToPrefix())
 	// fmt.Println(t0.ToPostfix())
 
-	t1 := tree.NewExpTree(nil)
-	t1.ParseInfix("((5+7)/(9-6))")
-	fmt.Println(t1.ToPostfix())
-	fmt.Println(t1.Evaluate())
+	// t1 := tree.NewExpTree(nil)
+	// t1.ParseInfix("((5+7)/(9-6))")
+	// fmt.Println(t1.ToPostfix())
+	// fmt.Println(t1.Evaluate())
+
+	q1 := &queue.Q{}
+	q1.EnQ(4)
+	q1.EnQ(6)
+	q1.EnQ(5)
+	q1.EnQ(2)
+	q1.EnQ(1)
+	q1.EnQ(9)
+	q1.EnQ(3)
+	fmt.Println(q1.PrintAscending())
+	fmt.Printf("Deq: %v\n", q1.DeQ().Data)
+	fmt.Println(q1.PrintAscending())
+	fmt.Printf("Deq: %v\n", q1.DeQ().Data)
+	fmt.Println(q1.PrintAscending())
 }
