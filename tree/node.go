@@ -31,6 +31,21 @@ func (n *Node) ToPrefix() *string {
 	return &s
 }
 
+func (n *Node) ToPostfix() *string {
+	if n == nil {
+		return nil
+	}
+	s := ""
+	if n.LChild != nil {
+		s += *n.LChild.ToPostfix()
+	}
+	if n.RChild != nil {
+		s += *n.RChild.ToPostfix()
+	}
+	s += n.Data
+	return &s
+}
+
 func PrefixToExpTree(s string, i *int) *Node {
 	if *i >= len(s) {
 		return nil

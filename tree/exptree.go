@@ -1,6 +1,9 @@
 package tree
 
-import "fmt"
+import (
+	"amirhossein-shakeri/qiet-ds/stack"
+	"fmt"
+)
 
 type ExpTree struct {
 	Root *Node
@@ -51,6 +54,36 @@ func (tree *ExpTree) ParsePrefix(s string) *ExpTree { // "*+23-41"
 
 func (tree *ExpTree) ToPrefix() string {
 	return *tree.Root.ToPrefix()
+}
+
+func (tree *ExpTree) ToPostfix() string {
+	return *tree.Root.ToPostfix()
+}
+
+func (tree *ExpTree) Evaluate() int {
+	str := tree.ToPostfix()
+	stack := &stack.Stack{}
+	var value int
+	for _, ch := range str {
+		if isOperator(string(ch)) {
+			n2 := stack.Pop()
+			n1 := stack.Pop()
+			switch string(ch) {
+			case "+":
+				value = n1 + n2
+			case "-":
+				value = n1 - n2
+			case "*":
+				value = n1 * n2
+			case "/":
+				value = n1 / n2
+			}
+			stack.Push(value)
+		} else {
+			stack.Push(int(ch - '0'))
+		}
+	}
+	return value
 }
 
 func (t *ExpTree) Print() {
